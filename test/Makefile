@@ -7,10 +7,10 @@ files = $(wildcard **.m ../src/**.m)
 TESTS = test_hello_world
 
 .PHONY: test
-test: $(addsuffix .runtest,$(TESTS))
+test: $(addsuffix .runtest,$(TESTS)) Mercury.options
 
 .PHONY: gen
-gen: $(addsuffix .gen,$(TESTS))
+gen: $(addsuffix .gen,$(TESTS)) Mercury.options
 
 $(TESTS): $(files) Mercury.modules
 	@$(MMC) --make $(PARALLEL) $@
@@ -37,3 +37,4 @@ clean:
 	rm -rf Mercury
 	rm -rf build
 	rm -f *.err *.mh
+	rm -f Mercury.modules

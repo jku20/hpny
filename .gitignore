@@ -5,3 +5,4 @@ build/
 *.mh
 tags
 hpny
+Mercury.modules
