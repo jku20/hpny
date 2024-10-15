@@ -2,7 +2,16 @@
 hpny:
 	@$(MAKE) -C src ../hpny
 
+.PHONY: test
+test:
+	@$(MAKE) -C test test
+
+.PHONY: gen
+gen:
+	@$(MAKE) -C test gen
+
 .PHONY: clean
 clean:
-	rm -rf src/Mercury
-	rm -f src/*.err src/*.mh src/hpny hpny
+	rm -f hpny
+	@$(MAKE) -C src clean
+	@$(MAKE) -C test clean

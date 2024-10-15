@@ -11,3 +11,8 @@ hpny: $(files) Mercury.options
 
 tags: $(files)
 	@mtags $(files)
+
+.PHONY: clean
+clean:
+	rm -rf Mercury
+	rm -f *.err *.mh hpny

@@ -1,8 +1,8 @@
 %----------------------------------------------------------------------------%
-% The entry point to the program.
+% Tests the hello world tests program.
 %----------------------------------------------------------------------------%
 
-:- module hpny.
+:- module test_hello_world.
 :- interface.
 
 :- import_module io.
