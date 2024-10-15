@@ -37,5 +37,3 @@ clean:
 	rm -rf Mercury
 	rm -rf build
 	rm -f *.err *.mh
-	rm -f $(TESTS)
-
