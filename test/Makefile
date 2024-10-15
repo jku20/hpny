@@ -13,7 +13,9 @@ test: $(addsuffix .runtest,$(TESTS))
 gen: $(addsuffix .gen,$(TESTS))
 
 $(TESTS): $(files) Mercury.modules
-	$(MMC) --make $(PARALLEL) $@
+	@$(MMC) --make $(PARALLEL) $@
+	@test -e build/ || mkdir build/
+	@mv $@ build/
 
 Mercury.modules: $(files)
 	@$(MMC) -f $(files)
@@ -21,16 +23,19 @@ Mercury.modules: $(files)
 .PHONY: %.runtest
 # Subcommand for the runtest script, "test" runs tests.
 %.runtest: %
-	./runtest.sh test $(<)
+	@cp $(<).exp build/
+	./runtest.sh test build/$(<)
 
 .PHONY: %.gen
 # Subcommand for the runtest script, "gen" creates the .exp files.
 %.gen: %
-	./runtest.sh gen $(<)
+	./runtest.sh gen build/$(<)
+	@cp build/$(<).exp $(<).exp
 
 .PHONY: clean
 clean:
 	rm -rf Mercury
+	rm -rf build
 	rm -f *.err *.mh
 	rm -f $(TESTS)
 
